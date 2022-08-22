@@ -1,4 +1,4 @@
-const fs = require('fs').promises
+const fs = require('fs').promises 
 const { read } = require('fs');
 const path = require('path')
 
@@ -12,7 +12,7 @@ async function walk(files){
     for(let file of files){
      
         console.log(files)
-    }
+    }n
 }
 
 readdir('/javascriptAndTypescriptFull/nodeJs/A004/')
