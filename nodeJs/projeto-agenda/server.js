@@ -4,11 +4,11 @@ const express = require('express');
 const app = express();
 const routes = require('./routes')
 const path = require('path')
-const {middlewareGlobal} = require('./src/middlewares/middleware')
+const {middlewareGlobal, checkCsrfError, csrfMiddleware} = require('./src/middlewares/middleware')
 const mongoose = require('mongoose')
 const session = require('express-session'); //ira salvar a sessao do usuario na memoria
 const MongoStore = require('connect-mongo')
-const flashMessage = require('connect-flash')
+const flash = require('connect-flash');
 const helmet = require('helmet')
 const csrf = require('csurf')
 
@@ -41,11 +41,14 @@ const sessionOptions = session({
 })
 
 app.use(sessionOptions)
-app.use(flashMessage())
+app.use(flash())
 
+app.use(csrf());
 
 // Nossos proprios middlewares
 app.use(middlewareGlobal)
+app.use(checkCsrfError)
+app.use(csrfMiddleware)
 app.use(routes)
 
 
