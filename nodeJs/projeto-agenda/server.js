@@ -12,7 +12,12 @@ const flash = require('connect-flash');
 const helmet = require('helmet')
 const csrf = require('csurf')
 
-mongoose.connect(process.env.CONECTIONSTRING, {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(process.env.CONECTIONSTRING,
+     {useNewUrlParser: true, 
+        useUnifiedTopology: true,
+        // useFindAndModify: false,
+
+    })
     .then(() => {
         console.log('conectei a base de dados')
         app.emit('pronto')
