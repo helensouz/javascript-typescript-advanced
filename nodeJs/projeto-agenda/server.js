@@ -51,7 +51,6 @@ app.use(checkCsrfError)
 app.use(csrfMiddleware)
 app.use(routes)
 
-
 app.on('pronto', () => {
     app.listen(3000, () => {
         console.log('servidor rodando na porta 30000')
